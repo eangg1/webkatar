@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Karang Taruna RW 05</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  background: #f5f5f5;
+  color: #333;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+    h2{
+      margin-bottom: 20px;
+      color: #333;  
+    }
+    header {
+    width: 100%;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    }
+    .header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background-color: #fff;
+  position: relative;
+}
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+.burger {
+  font-size: 24px;
+  cursor: pointer;
+  display: none; /* default: disembunyikan, tampil di HP saja */
+}
+
+.menu {
+  display: flex;
+  gap: 20px;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  padding: 8px 12px;
+  transition: background 0.3s;
+}
+
+.menu a:hover {
+  background-color: #f0f0f0;
+  border-radius: 6px;
+}
+
+.menu.hidden {
+  display: none;
+}
+/* Menu dropdown */
+.dropdown-menu {
+  position: absolute;
+  top: 60px; /* sesuaikan tinggi header */
+  right: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  display: none;
+  flex-direction: column;
+  z-index: 1000;
+  width: 200px;
+  transition: all 0.3s ease;
+}
+
+/* Saat aktif, tampilkan menu */
+.dropdown-menu.active {
+  display: flex;
+}
+
+/* Gaya link di dalam menu */
+.dropdown-menu a {
+  padding: 12px 16px;
+  text-decoration: none;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  transition: background 0.2s ease;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f0f0f0;
+}
+
+/* Hidden class */
+.hidden {
+  display: none;
+}
+    .logo-img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+    #menu.hidden {
+    display: none;
+    }
+
+    #menu.active {
+    display: block;
+    }
+    
+    .section {
+      padding-left: 10rem;
+      padding-right: 10rem;
+      padding-top: 5rem;
+      text-align: center;
+      scroll-margin-top: 80px; /* beri sedikit jarak */
+    }
+    #about {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        padding-bottom: 0px;
+    }
+
+    .visi-misi {
+        margin: 40px auto;
+        background-color: #f7f7f7;
+        padding: 30px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+        max-width: 700px; /* Ubah ukuran di sini */
+    }
+
+    .visi-misi h3 {
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    .visi-misi p,
+    .visi-misi ul {
+        max-width: 600px;
+        margin: 0 auto 20px;
+        color: #555;
+        line-height: 1.6;
+        text-align: left;
+    }
+
+    .visi-misi ul {
+        padding-left: 20px;
+    }
+
+    .visi-misi li {
+        margin-bottom: 10px;
+    }
+    .judul-divisi {
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 5px;  
+    }
+    .sub-subjudul-divisi{
+        font-size: 0.9rem;
+        color: #000000;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .subjudul-divisi {
+        font-size: 1.5rem;
+        color: #000000;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    
+    .anggota {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .kartu-anggota {
+      font-size: 0.875rem;
+      max-width: 170px;
+      text-align: center;
+      background-color: white;
+      border-radius: 10px;
+      padding: 0.5rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+    .kartu-anggota img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+    .ig-link {
+      display: inline-block;
+      margin-top: 4px;
+    }
+    .sponsor-img {
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    .slider {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+    }
+    .slider img {
+      width: 100%;
+      max-width: 200px;
+      margin: 0 0.5rem;
+      scroll-snap-align: center;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+
+  .lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(255,255,255,0.2);
+  }
+
+  .lightbox.active {
+    display: flex;
+  }
+
+  .lightbox:after {
+    content: '✕';
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+  }
+    iframe {
+      width: 100%;
+      max-width: 1000px;
+      height: 500px;
+      border: none;
+    }
+    .iframe-container {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Gaya iframe */
+.iframe-container iframe {
+  width: 100%;
+  height: 400px;
+  border: none;
+  border-radius: 12px;
+}
+
+/* Tombol buka file */
+.open-sheet-button {
+  position: absolute;
+  bottom: -30px;
+  left: 75px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.open-sheet-button:hover {
+  background-color: #45a049;
+}
+    .footer {
+  background-color: #1a1a1a;
+  color: #f0f0f0;
+  padding: 40px 20px 20px;
+  font-family: Arial, sans-serif;
+  margin-top: 50px;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-section {
+  flex: 1 1 220px;
+  min-width: 200px;
+}
+
+.footer-section h4 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.footer-section p,
+.footer-section li {
+  font-size: 14px;
+  color: #cccccc;
+  line-height: 1.6;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section a {
+  color: #cccccc;
+  text-decoration: none;
+}
+
+.footer-section a:hover {
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid #333;
+  padding-top: 15px;
+  margin-top: 30px;
+  font-size: 12px;
+  color: #999;
+}
+
+/* Animasi Fade Up */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s ease;
+}
+
+.fade-up.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+    @media (max-width: 768px) {
+      .burger {
+    display: block;
+  }
+
+  .menu {
+    position: absolute;
+    top: 100%; /* rata dengan header */
+    right: 24px;
+    flex-direction: column;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+    padding: 10px;
+    border-radius: 10px;
+    width: 200px;
+    display: none; /* default hidden */
+    z-index: 1000;
+  }
+
+  .menu.active {
+    display: flex;
+  }
+}
+  </style>
+</head>
+<body>
+  <header>
+  <div class="header-container">
+    <div class="logo">
+      <img src="assets/gambar/web/logokatar.png" alt="Logo Karang Taruna" class="logo-img" />
+      <span>Karang Taruna 05</span>
+    </div>
+    <i class="fas fa-bars burger" onclick="toggleMenu()"></i>
+  <nav id="menu" class="dropdown-menu hidden">
+    <a href="#sponsor">Sponsor</a>
+    <a href="#about">Tentang Kami</a>
+    <a href="#event">Event</a>
+    <a href="#anggaran">Anggaran</a>
+    <a href="#divisi">Struktur</a>
+  </nav>
+  </div>
+</header>
+
+  <section id="sponsor" class="section">
+    <h2>Daftar Sponsor</h2>
+    <img src="assets/gambar/Sponsor/sponsor.webp" alt="Sponsor 1" class="sponsor-img" />
+  </section>
+
+  <section id="about">
+  <h2>Tentang Kami</h2>
+  <p>
+    Karang Taruna RW 05 adalah organisasi kepemudaan di lingkungan RW 05 yang bergerak dalam bidang sosial, kepemudaan, dan pemberdayaan masyarakat. Kami hadir sebagai wadah bagi generasi muda untuk berkembang, berkarya, dan berkontribusi aktif dalam pembangunan lingkungan yang harmonis dan berkelanjutan.
+    Didirikan dengan semangat gotong royong dan kepedulian terhadap sesama, Karang Taruna RW 05 berkomitmen menjadi motor penggerak kegiatan positif di tengah masyarakat. Kegiatan kami mencakup bidang sosial, seni dan budaya, olahraga, keagamaan, kewirausahaan, serta pelatihan keterampilan.
+  </p>
+
+  <div class="visi-misi">
+    <h3>Visi</h3>
+    <p>Menjadi organisasi kepemudaan yang aktif, inovatif, dan berdaya guna dalam membangun masyarakat RW 05 yang berdaya saing, harmonis, dan berkelanjutan.</p>
+
+    <h3>Misi</h3>
+    <ul>
+      <li>Mengembangkan potensi pemuda melalui pelatihan dan kegiatan positif.</li>
+      <li>Mendorong semangat gotong royong dan solidaritas sosial.</li>
+      <li>Meningkatkan partisipasi pemuda dalam kegiatan kemasyarakatan.</li>
+      <li>Mewujudkan lingkungan RW 05 yang kreatif, sehat, dan mandiri.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="event" class="section">
+  <h2>Event Selanjutnya</h2>
+  <div class="slider">
+    <img src="assets/gambar/Event/566w-1crGLjzvyVc.webp" alt="Event 1" onclick="showLightbox(this.src)">
+    <img src="assets/gambar/Event/566w-3DUxsMj-uQw.webp" alt="Event 2" onclick="showLightbox(this.src)">
+    <img src="assets/gambar/Event/566w-N_FP1YQ5ESk.webp" alt="Event 3" onclick="showLightbox(this.src)">
+    <img src="assets/gambar/Event/566w-sD1yikiWJBE.webp" alt="Event 4" onclick="showLightbox(this.src)">
+  </div>
+</section>
+
+<!-- Lightbox Container -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img" src="" alt="Full View">
+</div>
+
+
+
+
+<section id="anggaran" class="section">
+  <h2>Transparansi Anggaran</h2>
+
+  <div class="iframe-container">
+    <iframe
+      src="https://docs.google.com/spreadsheets/d/1yh6GW6gLec6ouA2KXZHgMxvn5wqGoavcyGj4SHaSLW8/edit?usp=sharing">
+    </iframe>
+
+    <a href="https://docs.google.com/spreadsheets/d/1yh6GW6gLec6ouA2KXZHgMxvn5wqGoavcyGj4SHaSLW8/edit?usp=sharing"
+       target="_blank"
+       class="open-sheet-button">
+      Buka Google Sheets
+    </a>
+  </div>
+</section>
+
+
+
+
+  <section id="divisi" class="section">
+  <h2 class="judul-divisi">Struktur Kepengurusan</h2>
+  <p class="sub-subjudul-divisi">Struktur Organisasi Periode 2024–2029</p>
+
+  <h3 class="subjudul-divisi">Penasihat</h3>
+  <div class="anggota">
+    <div class="kartu-anggota">
+      <img src="assets/gambar/Anggota/Adhitio.jpg" alt="Penasihat">
+      <p><strong>Nama:</strong> Adhitio Putra Pratama</p>
+      <p><strong>Jabatan:</strong> Penasihat</p>
+      <p><strong>Tanggal Lahir:</strong> 4 Mei 1996</p>
+      <a href="https://www.instagram.com/adhithioputra" class="ig-link" aria-label="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+      </a>
+    </div>
+  </div>
+
+  <h3 class="subjudul-divisi">Kepemimpinan</h3>
+  <div class="anggota">
+    <div class="kartu-anggota">
+      <img src="assets/gambar/Anggota/Ramadhana.jpg" alt="Ketua">
+      <p><strong>Nama:</strong> Ramadhana Ulhikma Irawan</p>
+      <p><strong>Jabatan:</strong> Ketua</p>
+      <p><strong>Tanggal Lahir:</strong> 13 Des 2000</p>
+      <a href="https://www.instagram.com/ehkembar_" class="ig-link" aria-label="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+      </a>
+    </div>
+  </div>
+
+  <h3 class="subjudul-divisi">Sekretaris</h3>
+  <div class="anggota">
+    <div class="kartu-anggota">
+      <img src="assets/gambar/Anggota/salsa.jpg" alt="Sekretaris 1">
+      <p><strong>Nama:</strong> Salsa Nirwana Devi</p>
+      <p><strong>Jabatan:</strong> Sekretaris I</p>
+      <p><strong>Tanggal Lahir:</strong> 8 Jul 2002</p>
+      <a href="https://www.instagram.com/caacaaaa22" class="ig-link" aria-label="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+      </a>
+    </div>
+  </div>
+
+  <h3 class="subjudul-divisi">Bendahara</h3>
+  <div class="anggota">
+    <div class="kartu-anggota">
+      <img src="assets/gambar/Anggota/Luthfiana Syahrani.jpg" alt="Bendahara 1">
+      <p><strong>Nama:</strong> Luthfiana Syahrani</p>
+      <p><strong>Jabatan:</strong> Bendahara I</p>
+      <p><strong>Tanggal Lahir:</strong> 14 Okt 2004</p>
+      <a href="https://www.instagram.com/luthfianasyah" class="ig-link" aria-label="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+      </a>
+    </div>
+    <div class="kartu-anggota">
+      <img src="assets/gambar/Anggota/asriana.jpg" alt="Bendahara 2">
+      <p><strong>Nama:</strong> Asriani Istaka Dewi</p>
+      <p><strong>Jabatan:</strong> Bendahara II</p>
+      <p><strong>Tanggal Lahir:</strong> -</p>
+      <a href="#" class="ig-link" aria-label="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+      </a>
+    </div>
+  </div>
+
+  <h3 class="subjudul-divisi">Divisi Humas dan Publikasi</h3>
+  <div class="anggota">
+    <div class="kartu-anggota">
+      <img src="assets/gambar/Anggota/Fatur.jpg" alt="Ketua Humas">
+      <p><strong>Nama:</strong> Chandra Wibowo Faturahman</p>
+      <p><strong>Jabatan:</strong> Ketua Divisi</p>
+      <p><strong>Tanggal Lahir:</strong> 17 Jul 2003</p>
+      <a href="https://www.instagram.com/@cwfaturr" class="ig-link" aria-label="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+      </a>
+    </div>
+    <div class="kartu-anggota">
+      <img src="assets/gambar/Anggota/aqsal.jpg" alt="Anggota Humas">
+      <p><strong>Nama:</strong> Mochammad Aqsal Akbar</p>
+      <p><strong>Jabatan:</strong> Anggota</p>
+      <p><strong>Tanggal Lahir:</strong> 5 Jun 2004</p>
+      <a href="https://www.instagram.com/aqshalakbar06" class="ig-link" aria-label="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+      </a>
+    </div>
+    <div class="kartu-anggota">
+      <img src="assets/gambar/Anggota/hamda.jpg" alt="Anggota Humas">
+      <p><strong>Nama:</strong> Muhammad Hamda Maulana</p>
+      <p><strong>Jabatan:</strong> Anggota</p>
+      <p><strong>Tanggal Lahir:</strong> -</p>
+      <a href="-" class="ig-link" aria-label="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+      </a>
+    </div>
+    <div class="kartu-anggota">
+      <img src="assets/gambar/Anggota/gusti.jpg" alt="Anggota Humas">
+      <p><strong>Nama:</strong> Gusti Chandra Surya Rosiddin</p>
+      <p><strong>Jabatan:</strong> Anggota</p>
+      <p><strong>Tanggal Lahir:</strong> 14 Mar 2005</p>
+      <a href="https://www.instagram.com/g.ndra_" class="ig-link" aria-label="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+      </a>
+    </div>
+    <div class="kartu-anggota">
+      <img src="assets/gambar/Anggota/Annisa.jpeg" alt="Anggota Humas">
+      <p><strong>Nama:</strong> Anisa Wijaya</p>
+      <p><strong>Jabatan:</strong> Anggota</p>
+      <p><strong>Tanggal Lahir:</strong> 12 Mar 2008</p>
+      <a href="https://www.instagram.com/@answjy_" class="ig-link" aria-label="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+      </a>
+    </div>
+    <div class="kartu-anggota">
+      <img src="assets/gambar/Anggota/Shafa Nur Alif.jpg" alt="Anggota Humas">
+      <p><strong>Nama:</strong> Shafa Nur Hasnah Alifya</p>
+      <p><strong>Jabatan:</strong> Anggota</p>
+      <p><strong>Tanggal Lahir:</strong> 28 Okt 2009</p>
+      <a href="https://www.instagram.com/shafa.nha" class="ig-link" aria-label="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+      </a>
+    </div>
+    <div class="kartu-anggota">
+      <img src="assets/gambar/Anggota/nat.jpeg" alt="Anggota Humas">
+      <p><strong>Nama:</strong> Nathasya Afrillya Jhonatha </p>
+      <p><strong>Jabatan:</strong> Anggota</p>
+      <p><strong>Tanggal Lahir:</strong> 23 Apr 2007</p>
+      <a href="https://www.instagram.com/nathaasyaaa" class="ig-link" aria-label="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+      </a>
+    </div>
+  </div>
+
+  <h3 class="subjudul-divisi">Divisi Pendidikan dan Pelatihan</h3>
+  <div class="anggota">
+    <div class="kartu-anggota">
+      <img src="assets/gambar/Anggota/Hakim.jpeg" alt="Ketua Pendidikan">
+      <p><strong>Nama:</strong> Alif Lukmanul Hakim</p>
+      <p><strong>Jabatan:</strong> Ketua Divisi</p>
+      <p><strong>Tanggal Lahir:</strong> 4 Okt 2000</p>
+      <a href="https://www.instagram.com/alfhkmm_" class="ig-link" aria-label="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+      </a>
+    </div>
+    <div class="kartu-anggota">
+      <img src="assets/gambar/Anggota/Maura Devi.jpg" alt="Anggota Pendidikan">
+      <p><strong>Nama:</strong> Felisa Maura Devi</p>
+      <p><strong>Jabatan:</strong> Anggota</p>
+      <p><strong>Tanggal Lahir:</strong> 5 Jul 2006</p>
+      <a href="https://www.instagram.com/flsdvi" class="ig-link" aria-label="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+      </a>
+    </div>
+    <div class="kartu-anggota">
+      <img src="assets/gambar/Anggota/Pas Fot D3 - Dhandy Febri Herdiyanto.jpg" alt="Anggota Pendidikan">
+      <p><strong>Nama:</strong> Dhandy Febri Herdiyanto</p>
+      <p><strong>Jabatan:</strong> Anggota</p>
+      <p><strong>Tanggal Lahir:</strong> 26 Feb 2003</p>
+      <a href="https://www.instagram.com/Dhandy.F" class="ig-link" aria-label="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+      </a>
+    </div>
+    <div class="kartu-anggota">
+      <img src="assets/gambar/Anggota/bayu.jpg" alt="Anggota Pendidikan">
+      <p><strong>Nama:</strong> Bayu Dahri Al Bukhori</p>
+      <p><strong>Jabatan:</strong> Anggota</p>
+      <p><strong>Tanggal Lahir:</strong> -</p>
+      <a href="-" class="ig-link" aria-label="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+      </a>
+    </div>
+    <div class="kartu-anggota">
+      <img src="assets/gambar/Anggota/raihan.jpeg" alt="Anggota Pendidikan">
+      <p><strong>Nama:</strong> Raihan Dwi Saputra</p>
+      <p><strong>Jabatan:</strong> Anggota</p>
+      <p><strong>Tanggal Lahir:</strong> 29 Mar 2006</p>
+      <a href="https://www.instagram.com/eean.js" class="ig-link" aria-label="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+      </a>
+    </div>
+    <div class="kartu-anggota">
+      <img src="assets/gambar/Anggota/dimas.jpg" alt="Anggota Pendidikan">
+      <p><strong>Nama:</strong> Dimas Khadel Alif</p>
+      <p><strong>Jabatan:</strong> Anggota</p>
+      <p><strong>Tanggal Lahir:</strong> 11 Jun 2001</p>
+      <a href="https://www.instagram.com/appip11" class="ig-link" aria-label="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+      </a>
+    </div>
+    <div class="kartu-anggota">
+      <img src="assets/gambar/Anggota/rafly.jpeg" alt="Anggota Humas">
+      <p><strong>Nama:</strong> Rafly Revisiandra</p>
+      <p><strong>Jabatan:</strong> Anggota</p>
+      <p><strong>Tanggal Lahir:</strong> 26 Jul 2008</p>
+      <a href="https://www.instagram.com/rafly.re" class="ig-link" aria-label="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+      </a>
+    </div>
+  </div>
+
+  <h3 class="subjudul-divisi">Divisi Kewirausahaan</h3>
+  <div class="anggota">
+    <div class="kartu-anggota">
+      <img src="assets/gambar/Anggota/putu.jpg" alt="Ketua Wirausaha">
+      <p><strong>Nama:</strong> I Putu Wahyudi Suwardana</p>
+      <p><strong>Jabatan:</strong> Ketua Divisi</p>
+      <p><strong>Tanggal Lahir:</strong> -</p>
+      <a href="https://www.instagram.com/putu.wahyudis" class="ig-link" aria-label="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+      </a>
+    </div>
+    <div class="kartu-anggota">
+      <img src="assets/gambar/Anggota/dafa.jpeg" alt="Anggota Wirausaha">
+      <p><strong>Nama:</strong> M Dafa Briansyah</p>
+      <p><strong>Jabatan:</strong> Anggota</p>
+      <p><strong>Tanggal Lahir:</strong> 20 Mar 2004</p>
+      <a href="https://www.instagram.com/_briansyahh" class="ig-link" aria-label="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+      </a>
+    </div>
+    <div class="kartu-anggota">
+      <img src="assets/gambar/Anggota/Sidiq.jpeg" alt="Anggota Wirausaha">
+      <p><strong>Nama:</strong> Sidiq kurniawan</p>
+      <p><strong>Jabatan:</strong> Anggota</p>
+      <p><strong>Tanggal Lahir:</strong> 25 Agu 2002</p>
+      <a href="https://www.instagram.com/sdqkrnwn" class="ig-link" aria-label="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+      </a>
+    </div>
+    <div class="kartu-anggota">
+      <img src="assets/gambar/Anggota/Bimo Luthfiansyah.jpg" alt="Anggota Wirausaha">
+      <p><strong>Nama:</strong> Bimo Luthfiansyah</p>
+      <p><strong>Jabatan:</strong> Anggota</p>
+      <p><strong>Tanggal Lahir:</strong> 18 Jul 2009</p>
+      <a href="https://www.instagram.com/bimo_lutf" class="ig-link" aria-label="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+      </a>
+    </div>
+    <div class="kartu-anggota">
+      <img src="assets/gambar/Anggota/Zola.jpg" alt="Anggota Wirausaha">
+      <p><strong>Nama:</strong> Zola Pramita</p>
+      <p><strong>Jabatan:</strong> Anggota</p>
+      <p><strong>Tanggal Lahir:</strong> 25 Des 2008</p>
+      <a href="https://www.instagram.com/olloevera" class="ig-link" aria-label="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+      </a>
+    </div>
+    <div class="kartu-anggota">
+      <img src="assets/gambar/Anggota/dhanu.png" alt="Anggota Wirausaha">
+      <p><strong>Nama:</strong> Ramadhanu Fitrio Irawan</p>
+      <p><strong>Jabatan:</strong> Anggota</p>
+      <p><strong>Tanggal Lahir:</strong> 13 Des 2000</p>
+      <a href="https://www.instagram.com/ramadhaanuu_" class="ig-link" aria-label="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+      </a>
+    </div>
+    <div class="kartu-anggota">
+      <img src="assets/gambar/Anggota/fabli.jpg" alt="Anggota Wirausaha">
+      <p><strong>Nama:</strong> Fablian Ma'arif</p>
+      <p><strong>Jabatan:</strong> Anggota</p>
+      <p><strong>Tanggal Lahir:</strong> 16 Jun 2010</p>
+      <a href="https://www.instagram.com/fabli.an" class="ig-link" aria-label="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+  <footer class="footer">
+  <div class="footer-container">
+
+    <div class="footer-section">
+      <h4>Kontak</h4>
+      <p>Jl. Serdang Baru Raya, Kel. Serdang, Kec. Kemayoran</p>
+      <p>Email: webkatar05@example.com</p>
+      <p>Telepon: -</p>
+    </div>
+
+    <div class="footer-section">
+      <h4>Ikuti Kami</h4>
+      <ul>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">TikTok</a></li>
+        <li><a href="#">YouTube</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    &copy; 2025 Karang Taruna Harmoni. All rights reserved.
+  </div>
+</footer>
+  <script>
+      function showLightbox(src) {
+    document.getElementById("lightbox-img").src = src;
+    document.getElementById("lightbox").classList.add("active");
+  }
+
+  function closeLightbox() {
+    document.getElementById("lightbox").classList.remove("active");
+  }
+
+
+    function smoothScrollTo(targetY, duration = 1000) {
+    const startY = window.scrollY;
+    const distanceY = targetY - startY;
+    let startTime = null;
+
+    function animation(currentTime) {
+      if (!startTime) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const progress = Math.min(timeElapsed / duration, 1);
+      window.scrollTo(0, startY + distanceY * easeInOutQuad(progress));
+      if (progress < 1) requestAnimationFrame(animation);
+    }
+
+    function easeInOutQuad(t) {
+      return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+    }
+
+    requestAnimationFrame(animation);
+  }
+
+  function toggleMenu() {
+    const menu = document.getElementById('menu');
+    menu.classList.toggle('active');
+    menu.classList.toggle('hidden');
+  }
+
+  // Tutup menu setelah klik link
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('#menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        const menu = document.getElementById('menu');
+        menu.classList.remove('active');
+        menu.classList.add('hidden');
+      });
+    });
+  });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        } else {
+          entry.target.classList.remove("show");
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    // Tambahkan class fade-up & observe semua <section>
+    document.querySelectorAll("section").forEach((el) => {
+      el.classList.add("fade-up");
+      observer.observe(el);
+    });
+
+    // Tambahkan juga ke semua kartu dan judul divisi
+    document.querySelectorAll(".kartu-anggota, .judul-divisi, .sub-subjudul-divisi, .subjudul-divisi").forEach((el) => {
+      el.classList.add("fade-up");
+      observer.observe(el);
+    });
+  });
+
+
+  document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute("href"));
+      const offset = 80; // sesuaikan dengan tinggi navbar kamu
+      const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top,
+        behavior: "smooth"
+      });
+    });
+  });
+
+
+  function toggleMenu() {
+    const menu = document.getElementById('menu');
+    menu.classList.toggle('active');
+    menu.classList.toggle('hidden');
+  }
+
+  // Tutup menu saat klik salah satu link
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('#menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        const menu = document.getElementById('menu');
+        menu.classList.remove('active');
+        menu.classList.add('hidden');
+      });
+    });
+  });
+  </script>
+</body>
+</html>
